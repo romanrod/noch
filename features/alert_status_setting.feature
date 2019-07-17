@@ -22,3 +22,16 @@ Scenario: Status skip
   Given I required noch on my code
   When I call skip! method
   Then alert status should change to 'skip'
+
+Scenario Outline: Same status does not notify
+  Given I required noch on my code
+  When I call '<method>' method
+  And I call '<method>' method
+  Then nothing should happen
+Examples:
+  |method   |
+  |ok!      |
+  |warning! |
+  |critical!|
+  |skip!    |
+  

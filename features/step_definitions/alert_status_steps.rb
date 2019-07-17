@@ -3,7 +3,7 @@ Given("I required noch on my code") do
 end
 
 When("I call ok! method") do
-  ok!
+  @result = ok!
 end
 
 Then("alert status should change to {string}") do |string|
@@ -12,13 +12,28 @@ Then("alert status should change to {string}") do |string|
 end
 
 When("I call warning! method") do
-  warning!
+  @result = warning!
 end
 
 When("I call critical! method") do
-  critical!
+  @result = critical!
 end
 
 When("I call skip! method") do
-  skip!
+  @result = skip!
+end
+
+When("I call {string} method") do |meth|
+  @first_result = send("#{meth}")
+end
+
+When("I call {string} method again") do |meth|
+  @second_result = send("#{meth}")
+  byebug
+  puts
+end
+
+Then("nothing should happen") do
+  byebug
+  puts 'bla'
 end

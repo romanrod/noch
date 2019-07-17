@@ -22,6 +22,7 @@ module NOCH
       raise Error.new('SLACK_API_TOKEN not defined') unless ENV['SLACK_API_TOKEN']
       config.token = ENV['SLACK_API_TOKEN']
     end
+    @@client = ::Slack::Web::Client.new
   end
 
   def self.alert_name
@@ -31,6 +32,7 @@ module NOCH
 
   def self.changed to
     if (current = self.get_status)
+      byebug
       current_status = ::JSON.parse(current)['status']
       current_status if current_status != to
     else
@@ -44,9 +46,10 @@ module NOCH
 
   def self.evaluate_for what, message = nil, data = nil
     raise "Unknown status #{what}. Allowed: ['ok','warning','critical','skip']" unless ['ok','warning','critical','skip'].include? what
+    byebug
     if (from = self.changed what)
-      self.notify(from, what, message, data) unless what == 'skip'
       self.set what, message, data
+      self.notify(from, what, message, data) unless what == 'skip'
     end
   end
 
@@ -78,14 +81,16 @@ module NOCH
 
   def self.send_slack message = nil, slack_channel = nil
     if slack_channel
-      client = ::Slack::Web::Client.new
-      client.auth_test
+      @@client.auth_test
       if message and slack_channel
         begin
           puts "Enviando: #{message}
           to: #{slack_channel}"
+          @@client.chat_postMessage(channel: slack_channel, text: 'Hello World', as_user: true)
+          true
         rescue
           puts "Error sending message to slack channel #{slack_channel}"
+          false
         end
       end
     end
