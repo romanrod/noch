@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "NOCH/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "NOCH"
+  spec.name          = "noch"
   spec.version       = NOCH::VERSION
   spec.authors       = ["Roman"]
   spec.email         = ["roman.g.rodriguez@gmail.com"]
@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.dependency "redis"
-  spec.dependency "slack-ruby-client"
+  spec.add_dependency "redis"
+  spec.add_dependency "slack-ruby-client"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
