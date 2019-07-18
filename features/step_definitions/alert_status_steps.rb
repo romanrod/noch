@@ -29,11 +29,21 @@ end
 
 When("I call {string} method again") do |meth|
   @second_result = send("#{meth}")
-  byebug
-  puts
+end
+
+When("I call {string} method with data like") do |method_name, data|
+  send("#{method_name}", {data: JSON.parse(data)})
+end
+
+When("I call last_data method") do
+  @result = last_data
+end
+
+Then("I should see the data") do |data|
+  expected_data = JSON.parse(data)
+  fail "The result isn't as expected. Got #{@result}. Expected: #{expected_data}" unless @result == expected_data
 end
 
 Then("nothing should happen") do
-  byebug
-  puts 'bla'
+  fail "The result isn't as expected. Got #{@second_result} Expected #{@first_result}" unless @second_result == @first_result
 end

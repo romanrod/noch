@@ -47,7 +47,7 @@ include NOCH
 if everything_is_ok?
   ok!
 else
-  critical! 'mmlpqtp'
+  critical! message: 'mmlpqtp', data: {foo: 'bar'}
 end
 
 ```

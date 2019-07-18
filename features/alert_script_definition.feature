@@ -11,6 +11,7 @@ include NOCH
 require 'mock_redis' # only for testing purposes
 NOCH.class_variable_set :@@redis, MockRedis.new # only for testing purposes
 ok!
+print alert_name
   """
   When I run the script with name 'my_script.rb'
-  Then alert name should print 'Alert: `My Script changed from `OK` to `ok` *  *'
+  Then alert name should be 'My Script'

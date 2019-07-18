@@ -26,7 +26,7 @@ Scenario: Status skip
 Scenario Outline: Same status does not notify
   Given I required noch on my code
   When I call '<method>' method
-  And I call '<method>' method
+  And I call '<method>' method again
   Then nothing should happen
 Examples:
   |method   |
@@ -35,3 +35,18 @@ Examples:
   |critical!|
   |skip!    |
   
+Scenario: Alert data
+  Given I required noch on my code
+  When I call 'ok!' method with data like
+  """
+  {
+    "foo":"bar"
+  }
+  """
+  And I call last_data method
+  Then I should see the data
+  """
+  {
+    "foo":"bar"
+  }
+  """

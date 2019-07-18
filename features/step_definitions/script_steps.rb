@@ -6,6 +6,6 @@ When("I run the script with name {string}") do |filename|
   @output = `ruby #{filename}`
 end
 
-Then("alert name should print {string}") do |expected|
+Then("alert name should be {string}") do |expected|
   fail "Cannot find expected output. got [#{@output}]" unless @output == expected
 end
