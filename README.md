@@ -12,7 +12,12 @@ NOCH will notify when status change its value by using three simple methods
 
 `critical!`
 
-Notifications are sent to Slack channel
+`skip!`
+
+Notifications are sent to Slack channel and or Telegram group
+
+
+
 
 ## Requirements
 
@@ -42,10 +47,12 @@ Create a file with a name you want.
 # my_alert_script.rb
 
 # SLACK 00000000000000000
+# TELEGRAM 111111111111
+
 include NOCH
 
 if everything_is_ok?
-  ok!
+  ok! "We are rocking!"
 else
   critical! message: 'mmlpqtp', data: {foo: 'bar'}
 end
@@ -54,7 +61,7 @@ end
 
 Run it!
 
-SLACK_API_TOKEN=<your_slack_api_token> REDIS_HOST=<your-redis-host> REDIS_PORT=<your-redis-port> ruby my_alert_script.rb
+TELEGRAM_TOKEN=<your_telegram_bot_token> TELEGRAM_USER=<your-telegram-user> SLACK_API_TOKEN=<your_slack_api_token> REDIS_HOST=<your-redis-host> REDIS_PORT=<your-redis-port> ruby my_alert_script.rb
 
 ## Test
 
