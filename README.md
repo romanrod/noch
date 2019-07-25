@@ -14,14 +14,23 @@ NOCH will notify when status change its value by using three simple methods
 
 `skip!`
 
-Notifications are sent to Slack channel and or Telegram group
+Notifications about the change of the status are sent to Slack channel and or Telegram group
+You can send a customized message to each method.
+And data can be saved
 
+Sending only a message:
+
+`warning! 'Value is higher than 50'`
+
+Sending message and data
+
+`critical! message: 'System outage', data:{ status: '504'}`
 
 
 
 ## Requirements
 
-This uses [Redis](https://redis.io/) to save states. If your Redis runs out of the job run, you have to pass `REDIS_HOST` and `REDIS_PORT`
+This uses [Redis](https://redis.io/) to save states. 
 
 ## Installation
 
@@ -54,7 +63,7 @@ include NOCH
 if everything_is_ok?
   ok! "We are rocking!"
 else
-  critical! message: 'mmlpqtp', data: {foo: 'bar'}
+  critical! message: 'mmlpqtp', data: {pasaron: 'cosas'}
 end
 
 ```
@@ -72,8 +81,3 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/romanrod/noch.
-
-
-## TODO
-
-I want to add Telegram for notification messages
