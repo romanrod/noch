@@ -4,7 +4,7 @@ NOCH stands for Notify On CHange.
 Suppose you have a job running scheduled to check something. Every execution will have a result and you'll want to notify when something go wrong.
 Ok, if several times the result is the same...Do you want to notify every time the job run for the same result?
 If you do not, NOCH can help you with this kind of situations.
-NOCH will notify when status change its value by using three simple methods
+NOCH will notify when status change its value by using four simple methods
 
 `ok!`
 
