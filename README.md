@@ -63,7 +63,7 @@ include NOCH
 if everything_is_ok?
   ok! "We are rocking!"
 else
-  critical! message: 'mmlpqtp', data: {pasaron: 'cosas'}
+  critical! message: 'Houston', data: {message: 'We have a problem!'}
 end
 
 ```
